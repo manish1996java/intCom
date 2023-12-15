@@ -1,0 +1,17 @@
+.app-header{
+    background: white;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: -3px 6px 9px -5px #e0dfdf
+}
+
+
+.app-header-container{
+    display: flex;
+    align-items: center;
+    height: 7vh;
+}
+
+

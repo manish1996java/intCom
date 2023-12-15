@@ -1,0 +1,33 @@
+
+*,*::after,*::before{
+  box-sizing: border-box;
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+}
+
+body{
+  margin: 0px;
+  height: 100vh;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+ul,ol,ul,li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+
+.app-container{
+  margin: 0 2rem!important;
+}
+
+.content-height{
+}
