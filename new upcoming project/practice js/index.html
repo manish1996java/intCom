@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="scroll-container" style="height: 100vh;overflow-y: scroll;">
+
+    </div>
+    <script>
+        let page  = 1;
+        let isFetching = false;
+
+
+        function dummyFetch(page){
+            return new Promise((resolve,reject)=>{
+                if(page >= 5){
+                    reject(new Error('data not found'));
+                }
+                setTimeout(()=>{
+                    resolve([
+                        'manish',
+                        'kapil',
+                        'santosh',
+                        'nikhil',
+                        'kajal',
+                        'niti',
+                        'priyanka'
+                    ]);
+                },1000)
+            })
+        }
+
+
+        async function fetchContent (){
+            try{
+                isFetching = true;
+                let data = await dummyFetch(page);
+                console.log('data',data);
+                data.forEach(element => {
+                    let divEle = document.createElement('div');
+                    console.dir(divEle);
+                    divEle.style.height = "200px";
+                    divEle.innerHTML = element;
+                    console.log('template',divEle);
+                    document.getElementById('scroll-container').appendChild(divEle);
+                });
+
+                isFetching = false;
+                page++;
+
+            }catch(err){
+                isFetching = false;
+                console.log(err);
+            }
+        }
+
+
+        function handleScroll(){
+            console.log('handleScroll');
+            const scrollContainer = document.getElementById('scroll-container');
+            const containerHeight = scrollContainer.clientHeight;
+            const scrollTop = scrollContainer.scrollTop;
+            const scrollHeight = scrollContainer.scrollHeight;
+            // console.log('containerHeight',containerHeight);
+            // console.log('scrollTop',scrollTop);
+            // console.log('scrollHeight',scrollHeight);
+            if(containerHeight + scrollTop >= scrollHeight){
+                fetchContent();
+            }
+
+        }
+
+        document.getElementById('scroll-container').addEventListener('scroll', handleScroll);
+
+        fetchContent();
+
+
+
+
+    </script>
+</body>
+</html>
